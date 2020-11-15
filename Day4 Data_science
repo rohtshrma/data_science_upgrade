@@ -1,0 +1,94 @@
+Answer 1
+
+import pandas as pd
+
+# printing the version of pandas
+print(pd.__version__)
+
+
+Answer 2 (a)
+
+import numpy as np
+import pandas as pd
+
+# using numpy array value
+data = np.array(['a', 'b', 'c', 'd', 'e']) 
+  
+# creating series from array 
+series = pd.Series(data) 
+print(series)
+
+
+Answer 2 (b)
+
+import numpy as np
+import pandas as pd
+
+# using numpy array value
+data = np.array(['a', 'b', 'c', 'd', 'e']) 
+  
+# creating series from array with user index value
+series = pd.Series(data, index = [1, 2, 3, 4, 5]) 
+print(series)
+
+
+Answer 3
+
+import numpy as np
+import pandas as pd
+
+# using numpy array value
+data = np.array(['a', 'b', 'c', 'd', 'e']) 
+  
+# creating series from array with user index value
+series = pd.Series(data, index = [1, 2, 3, 4, 5]) 
+
+# convert series to dataframe 
+df = series.to_frame().reset_index() 
+  
+# show the dataframe 
+df
+
+
+
+Answer 4
+
+import seaborn as sns
+
+mpg=sns.load_dataset('mpg')
+
+print(mpg)
+
+
+
+Answer 5
+
+import seaborn as sns
+# importing pandas with alias name
+import pandas as pd
+
+# loading the dataset from seaborn
+mpg=sns.load_dataset('mpg')
+
+# creating a dataframe
+df = pd.DataFrame(mpg)
+
+# Displaying the country origin from where cars belong
+df.origin.unique()
+
+
+
+Answer 6
+
+import seaborn as sns
+# importing pandas with alias name
+import pandas as pd
+
+# loading the dataset from seaborn
+mpg=sns.load_dataset('mpg')
+
+# creating a dataframe
+df = pd.DataFrame(mpg)
+
+# Displaying the part from dataframe where cars belong to "usa"
+df[df['origin'].str.contains("usa")]
