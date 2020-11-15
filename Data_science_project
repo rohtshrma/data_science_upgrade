@@ -1,0 +1,151 @@
+# importing modules
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
+TASK 1
+# reading csv file using pandas
+df = pd.read_csv("pubg.csv")
+
+df
+
+TASK 2
+# checking datatype of all columns
+data_type = df.dtypes
+data_type
+
+
+TASK 3
+# DataFrame.describe() is used to give out the summary of all the numerical columns in a dataframe
+num_summary = df.describe()
+num_summary
+
+
+Task - 4:
+avg = df['kills'].mean()
+print("\nThe average person kills :", avg,"player")
+
+
+Task - 5:
+nn_per = df["kills"].quantile(0.99)
+print("\n99% of people have",nn_per,"kills")
+
+
+Task - 6:
+most_kill = df["kills"].max()
+print("\nThe most kill ever recorded are :",most_kill)
+
+
+Task - 7:
+df.columns
+
+
+Task - 8:
+sns.distplot( df['matchDuration'] );
+
+
+Task - 9:
+sns.distplot( df['walkDistance'] );
+
+
+Task - 10:
+%matplotlib inline
+plt.style.use('classic')
+plt.figure()
+
+# ploting for matchDuration
+plt.subplot(2,1,1)
+plt.plot(df["matchDuration"],"-")
+plt.xlabel("Match Duration")
+
+# ploting for walkDistance
+plt.subplot(2,1,2)
+plt.plot(df["walkDistance"],"--")
+plt.xlabel("Walk Distance")
+
+
+Task - 11:
+%matplotlib inline
+plt.style.use('classic')
+plt.figure(figsize=(10,5))
+
+# ploting for matchDuration
+plt.subplot(1,2,1)
+plt.plot(df["matchDuration"])
+plt.xlabel("Match Duration")
+
+# ploting for walkDistance
+plt.subplot(1,2,2)
+plt.plot(df["walkDistance"])
+plt.xlabel("Walk Distance")
+
+
+
+Task - 12:
+sns.pairplot(df.head(700));
+
+
+
+Task - 13:
+uni = pd.unique(df['matchType'])
+print("\nUnique value in matchType is :",uni)
+n_uni = len(uni)
+print("\nCount of unique value in matchType is :",n_uni)
+
+
+
+Task - 14:
+sns.barplot(df['matchType'],df['killPoints']);
+
+
+
+Task - 15:
+sns.barplot(df['matchType'],df['weaponsAcquired']);
+
+
+
+Task - 16:
+cat_col = df.select_dtypes('category').columns 
+cat_col
+
+
+
+Task - 17:
+sns.boxplot(x='matchType', y='winPlacePerc', data=df);
+
+
+
+Task - 18:
+sns.boxplot(x='matchType', y='matchDuration', data=df);
+
+
+
+Task - 19:
+sns.boxplot( x='matchDuration', y='matchType',data=df);
+
+
+
+Task - 20:
+df['KILL'] = df['headshotKills'] + df['teamKills'] + df['roadKills']
+df['KILL']
+
+
+
+Task - 21:
+df['winPlacePerc'].round(decimals=2)
+
+
+
+Task - 22:
+mean = []
+
+for i in range(100):
+  
+  for x in range(0,1001,50):
+    
+    mean1 = df['damageDealt'].head(x).mean()
+    mean.append(mean1)
+ 
+sns.histplot(data=df['damageDealt'], x=mean)
